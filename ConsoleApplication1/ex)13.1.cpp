@@ -5,7 +5,9 @@
 * 이름: 이동재
 */
 // 13.1 (시간 측정 까지)
+// 11.3 11.4 11.5 11.6 11.7 11.8 11.9 11.10
 #include <stdio.h>
+#include <time.h>
 #define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
 
 void printArray(int arr[], int n, const char* str)
@@ -41,6 +43,11 @@ void main()
 {
     int list[9] = { 5, 3, 8, 4, 9, 1, 6, 2, 7 };
     printArray(list, 9, "Original "); // 정렬 전 배열 출력
+
+    clock_t start = clock(); // 정렬 시작 시간 저장
     selection_sort( list, 9 ); // 선택 정렬 실행
+    clock_t end = clock(); // 정렬이 끝난 시간 저장
+
     printArray( list, 9, "Selection" ); // 정렬 후 배열 출력
+    printf("\nTime: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
