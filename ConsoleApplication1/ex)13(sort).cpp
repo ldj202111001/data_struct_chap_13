@@ -1,5 +1,5 @@
 ﻿/*
-* 프로그램 내용: 선택 정렬 함수와 전체 선택 정렬 프로그램
+* 프로그램 내용: 정렬 함수들과 전체 선택 정렬 프로그램 (완료: 선택, 삽입, 버블)
 * 실습날짜: 2024 - 06- 05
 * 학번: 202111001
 * 이름: 이동재
@@ -39,6 +39,32 @@ void selection_sort(int list[], int n)
     }
 }
 
+void insertion_sort(int list[], int n)
+{
+    int i, j, key;
+    for (i = 1; i < n; i++) {
+        key = list[i];
+        for (j = i - 1; j >= 0 && list[j] > key; j--)
+            list[j + 1] = list[j]; // 레코드의 오른쪽 이동list[j+1] = key;
+        printStep(list, n, i); // 중간 과정 출력용 문장}
+    }
+}
+
+void bubble_sort(int list[], int n)
+{
+    int i, j, bChanged, tmp;
+    for (i = n - 1; i > 0; i--) {
+        bChanged = 0;
+        for (j = 0; j < i; j++)
+            if (list[j] > list[j + 1]) {
+                SWAP(list[j], list[j + 1], tmp);
+                bChanged = 1;
+            }
+        if (!bChanged) break;
+        printStep(list, n, n - i);
+    }
+}
+
 void main()
 {
     int list[9] = { 5, 3, 8, 4, 9, 1, 6, 2, 7 };
@@ -51,3 +77,10 @@ void main()
     printArray( list, 9, "Selection" ); // 정렬 후 배열 출력
     printf("\nTime: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
 }
+
+// 선택
+// 삽입
+// 버블정렬: 이동연산 과다 (이동연산은 비교연산보다 더 많은 시간 소요)
+// 셸
+// // ...
+// 같은 데이터에서 7개의 정렬 알고리즘을 적용해서 비교
