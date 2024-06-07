@@ -6,10 +6,12 @@
 */
 // 13.1 (시간 측정 까지)
 // 11.3 11.4 11.5 11.6 11.7 11.8 11.9 11.10
+// 연습문제: 1, 2, 3, 5, 6
 #include <stdio.h>
 #include <time.h>
 #define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
-#define MAX_SIZE 20
+#define MAX_SIZE 100000
+#define DATA_SIZE 100000
 
 void printArray(int arr[], int n, const char* str)
 {
@@ -146,21 +148,25 @@ int partition(int list[], int left, int right)
 
 int partition(int list[], int left, int right)
 {
-    int low, high;
     int pivot, tmp;
-
+    int low, high;
+    
     low = left;
     high = right + 1;
     pivot = list[left];
-
     do
     {
         do
             low++;
-        while(low <=
-    }
+        while (low <= right && list[low] < pivot);
+        do
+            high--;
+        while (high >= left && list[high] > pivot);
+        if (low < high) SWAP(list[low], list[high], tmp);
+    } while (low < high);
 
-   
+    SWAP(list[left], list[high], tmp);
+    return high;
 }
 
 // 퀵 라이브러리도 하기 !!!!!!!!!!!!!!!!!!!!!!!!!
